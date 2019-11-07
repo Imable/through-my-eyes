@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <sergey-import src="head">
+      <sergey-template name="page-title">
+        <sergey-slot name="title"/>
+      </sergey-template>
+    </sergey-import>
+  </head>
+
+  <body>
+    <sergey-import src="header"/>
+
+    <main>
+      <sergey-slot name="main"/>
+    </main>
+
+    <sergey-import src="footer"/>
+  </body>
+
+</html>

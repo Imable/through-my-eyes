@@ -1,0 +1,145 @@
+
+/*
+ *  Smarties
+ *************
+ * RESET-ANIMATION-RETRIGGER
+        Remove an animation on state change of checkbox (:checked), such that the animation is reapplied when the state
+        changes back (not :checked). This restarts the animation.
+ 
+ * CHECKBOX-COUSIN-SELECTION
+        Input and label tag are split in HTML (input in grandparent of label), such that the input:checked selector can
+        apply style to cousins of the label. Due to the for attribute the label can still enable the :checked state 
+        on the checkbox.
+ * CASCADING-TRANSFORM
+        By placing blocks next to each other using top/right/bottom/left we can create a cascading transformation by just
+        applying one transformation to all elements involved. For example, this can be used for sliders.
+ *
+ * 
+ *
+ *
+ * 
+ *
+ *
+ */
+
+
+/*********************
+ *      Generic      *
+ *********************/
+
+:root {
+    --put-on-time: 2s;
+    --swap-time: 1s;
+}
+
+* {
+    padding: 0px;
+    margin: 0px;
+}
+
+html {
+    overflow-x: hidden;
+}
+
+/*********************
+ *       Layout      *
+ *********************/
+
+body {
+    width: 100%; height: 300vh;
+}
+
+header {
+
+}
+
+footer {
+
+}
+
+/*********************
+ *      Content      *
+ *********************/
+
+/*
+ *    View selector
+ * * * * * * * * * * */
+
+/* Split input and label tag to allow cousin selection [CHECKBOX-COUSIN-SELECTION] */
+#swap-bar  {
+    position: absolute;
+    z-index: 1;
+}
+
+input#swap-eyes {
+    display: none;
+}
+
+input#swap-eyes:checked ~ div.scene {
+    transform: translate(100%, 0px);
+}
+
+/* Reset the animation when switching views to retrigger it when switching back [RESET-ANIMATION-RETRIGGER] */
+input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
+    animation: none;
+}
+
+/*
+ *  View definition
+ * * * * * * * * * * */
+
+.scene {
+    position: absolute;
+    top: 0px; left: 0px;
+    width: 100%; height: 100%;
+    background-color: yellow;
+    transition: transform 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+/*  
+ *  Look at my eyes
+ */
+
+/* Position specification to switch views with a single transform application [CASCADING-TRANSFORM] */
+#at-my-eyes {
+    left: -100%;
+    background-color: orange;
+}
+
+/*  
+ *  Look through my eyes
+ */
+
+#through-my-eyes #glasses {
+    position: fixed;
+    top: 50%;
+    animation: var(--put-on-time) ease 0s 1 normal both running put-on;
+}
+
+#through-my-eyes #glasses-overlay {
+    position: fixed;
+    top: 0px; left: 0px;
+    width: 100%; height: 100%;
+    background-color: #2B3EA5;
+    animation: 0.5s ease 0.25s 1 reverse both running put-on;
+}
+
+@keyframes put-on {
+    0% {
+        transform: translate(0px, -20%) scale(1.5);
+    }
+
+    50% {
+        opacity: 0.75;
+    }
+
+    85% {
+        transform: translate(0px, -50%) scale(2.5);   
+    }
+
+    100% {
+        opacity: 0;
+        display: none;
+        visibility: none;
+    }
+}
