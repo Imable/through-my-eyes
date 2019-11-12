@@ -13,8 +13,12 @@
  * CASCADING-TRANSFORM
         By placing blocks next to each other using top/right/bottom/left we can create a cascading transformation by just
         applying one transformation to all elements involved. For example, this can be used for sliders.
- *
- * 
+ 
+ * UNHIDE-PSEUDO-CONTENT
+        Using visibility to hide the main element and show the pseudo element leaves space allocated to the main element.
+        Using a font-size of 0rem removes the main elements allocated space. Using a font-size of 1rem on the pseudo element
+        returns the pseudo element the main elements original font-size.
+        Warning: a font-size of 0px can result in unexpected behavior in some browsers.
  *
  *
  * 
@@ -28,8 +32,16 @@
  *********************/
 
 :root {
-    --put-on-time: 2s;
-    --swap-time: 1s;
+    --unit: calc(0.5vw + 0.5vh);
+
+    --duration-put-on: 2s;
+    --duration-put-on-delay: 0.25s;
+
+    --size-font: calc(14px + 1.25 * var(--unit));
+
+    --color-glasses-overlay: #2B3EA5;
+    --color-glasses-overlay-opacity: 0.2;
+    --color-swap-bar-background: rgb(236, 238, 204);
 }
 
 * {
@@ -39,6 +51,8 @@
 
 html {
     overflow-x: hidden;
+
+    font-size: var(--size-font);
 }
 
 /*********************
@@ -67,9 +81,41 @@ footer {
 
 /* Split input and label tag to allow cousin selection [CHECKBOX-COUSIN-SELECTION] */
 #swap-bar  {
-    position: absolute;
+    position: fixed;
     z-index: 1;
+    width: 100%;
+    background-color: var(--color-swap-bar-background);
 }
+
+/*  
+ *  Textual swapping
+ */
+
+#swap-bar p {
+    display: inline;
+}
+
+/* Hide textual element without hiding pseudo element [UNHIDE-PSEUDO-CONTENT] */
+#swap-bar label {
+    cursor: pointer;
+    visibility: hidden;
+    font-size: 0rem;
+}
+
+#swap-bar label::before {
+    content: 'Look at my eyes';
+    visibility: visible;
+    font-size: 1rem;
+    font-style: italic;
+}
+
+input#swap-eyes:checked ~ div#swap-bar label::before {
+    content: 'Look through my eyes'
+}
+
+/*  
+ *  Functional swapping
+ */
 
 input#swap-eyes {
     display: none;
@@ -91,9 +137,9 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
 .scene {
     position: absolute;
     top: 0px; left: 0px;
-    width: 100%; height: 100%;
-    background-color: yellow;
+    width: 100%;
     transition: transform 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+    overflow-x: hidden;
 }
 
 /*  
@@ -103,7 +149,6 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
 /* Position specification to switch views with a single transform application [CASCADING-TRANSFORM] */
 #at-my-eyes {
     left: -100%;
-    background-color: orange;
 }
 
 /*  
@@ -113,24 +158,35 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
 #through-my-eyes #glasses {
     position: fixed;
     top: 50%;
-    animation: var(--put-on-time) ease 0s 1 normal both running put-on;
+    animation: var(--duration-put-on) ease var(--duration-put-on-delay) 1 normal both running put-on;
 }
 
 #through-my-eyes #glasses-overlay {
     position: fixed;
     top: 0px; left: 0px;
-    width: 100%; height: 100%;
-    background-color: #2B3EA5;
-    animation: 0.5s ease 0.25s 1 reverse both running put-on;
+    width: 100%; height: 100vh;
+    background-color: var(--color-glasses-overlay);
+    animation: calc(0.4 * var(--duration-put-on)) ease calc(0.25 * var(--duration-put-on) + var(--duration-put-on-delay)) 1 normal both running fade-in;
+}
+
+@keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: var(--color-glasses-overlay-opacity);
+    }
 }
 
 @keyframes put-on {
     0% {
+        opacity: 0;
         transform: translate(0px, -20%) scale(1.5);
     }
 
     50% {
-        opacity: 0.75;
+        opacity: 0.85;
     }
 
     85% {
@@ -140,6 +196,5 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
     100% {
         opacity: 0;
         display: none;
-        visibility: none;
     }
 }
