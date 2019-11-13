@@ -41,7 +41,6 @@
 
     --color-glasses-overlay: #2B3EA5;
     --color-glasses-overlay-opacity: 0.2;
-    --color-swap-bar-background: rgb(236, 238, 204);
 }
 
 * {
@@ -81,7 +80,11 @@ footer {
 
 /* Split input and label tag to allow cousin selection [CHECKBOX-COUSIN-SELECTION] */
 #swap-bar  {
+    --size-swap-bar-padding: 0.2em;
+    --color-swap-bar-background: rgb(236, 238, 204);
     position: fixed;
+    padding: var(--size-swap-bar-padding) 0px;
+    text-align: center;
     z-index: 1;
     width: 100%;
     background-color: var(--color-swap-bar-background);
@@ -99,7 +102,7 @@ footer {
 #swap-bar label {
     cursor: pointer;
     visibility: hidden;
-    font-size: 0rem;
+    font-size: 0px;
 }
 
 #swap-bar label::before {
@@ -154,6 +157,15 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
 /*  
  *  Look through my eyes
  */
+
+#through-my-eyes {
+}
+
+#through-my-eyes .content {
+    height: 100vh; width: 100vw;
+    background: url('mountain2.jpg');
+    background-size: cover;
+ }
 
 #through-my-eyes #glasses {
     position: fixed;
