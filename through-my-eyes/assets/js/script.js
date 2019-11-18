@@ -12,21 +12,21 @@ class SwapEyesCheckBoxHandler {
 
     HandleCheck (e) {
         if (e.target.checked) {
-            HelperFunctions.setAnchor('at-my-eyes');
+            HelperFunctions.setAnchor('through-your-eyes');
         } else {
             HelperFunctions.clearAnchor();
         }
     }
 
     HandlePageLoad () {
-        if (HelperFunctions.getAnchor() === 'at-my-eyes') {
+        if (HelperFunctions.getAnchor() === 'through-your-eyes') {
             this.swapEyesCheckBox.checked = true;
         }
     }
 }
 
 class HelperFunctions {
-    
+
     static getAnchor () {
         return (document.URL.split('#').length > 1) ? document.URL.split('#')[1] : null;
     }

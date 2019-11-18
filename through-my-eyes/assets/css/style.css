@@ -134,7 +134,7 @@ footer {
 #swap-bar label::before {
   visibility: visible;
 
-  content: 'Look at my eyes';
+  content: 'Look through your eyes';
 
   font-size: 1rem;
 
@@ -178,11 +178,11 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses, input#swap-eyes:checked 
 }
 
 /*  
-*  Look at my eyes
+*  Look through your eyes
 */
 
 /* Position specification to switch views with a single transform application [CASCADING-TRANSFORM] */
-#at-my-eyes {
+#through-your-eyes {
   left: -100%;
 }
 
@@ -206,7 +206,7 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses, input#swap-eyes:checked 
 
 #through-my-eyes #glasses {
   pointer-events: none;
-  
+
   position: fixed;
   top: 50%;
   z-index: 1;
