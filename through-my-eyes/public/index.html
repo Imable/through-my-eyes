@@ -5,6 +5,7 @@
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link rel="stylesheet" href="/assets/css/style.css" />
+<script src="/assets/js/script.js"></script>
 <link
   rel="apple-touch-icon"
   sizes="180x180"
@@ -57,7 +58,7 @@
             <a href="/" class="active" aria-current="page">Home</a>
         </li>
         <li>
-            <a href="/indoors/">Indoors</a>
+            <a href="/blog/">Blog</a>
         </li>
     </ul>
 </nav>
@@ -66,7 +67,26 @@
 
 
     <main>
-      Outside through my eyes
+      <input id="swap-eyes" type="checkbox">
+    <div id="swap-bar">
+        <span>
+            <p>Viewing the world through my eyes. </p>
+            <label for="swap-eyes">Swap eyes</label>
+        </span>
+    </div>
+
+    <div id="through-my-eyes" class="scene">
+        <div id="glasses-overlay"></div>
+        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+            No SVG support
+        </object>
+    </div>
+
+    <div id="at-my-eyes" class="scene">
+        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+            No SVG support
+        </object>
+    </div>
     </main>
 
     <footer>

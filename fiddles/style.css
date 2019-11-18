@@ -163,12 +163,17 @@ input#swap-eyes:checked ~ div#through-my-eyes #glasses  {
 
 #through-my-eyes .content {
     height: 100vh; width: 100vw;
-    background: url('mountain2.jpg');
-    background-size: cover;
- }
+}
+
+#through-my-eyes .content #mountains {
+    position: absolute;
+    top: 10%;
+    width: 120vw;
+}
 
 #through-my-eyes #glasses {
     position: fixed;
+    z-index: 1;
     top: 50%;
     animation: var(--duration-put-on) ease var(--duration-put-on-delay) 1 normal both running put-on;
 }
