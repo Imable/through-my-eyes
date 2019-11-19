@@ -4,7 +4,8 @@
   <head>
     <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link rel="stylesheet" href="/assets/css/style.css" />
+<link rel="stylesheet" href="/assets/css/global.css" />
+<link rel="stylesheet" href="/assets/css/through-eyes.css"/>
 <script src="/assets/js/script.js"></script>
 <link
   rel="apple-touch-icon"
@@ -41,12 +42,12 @@
 <meta name="description" content="Default description"/>
 <meta property="og:description" content="Default description"/>
 <meta name="twitter:description" content="Default description"/>
-<meta name="apple-mobile-web-app-title" content="Outside through my eyes."/>
-<meta name="application-name" content="Outside through my eyes." />
-<meta property="og:title" content="Outside through my eyes." />
-<meta property="og:image:alt" content="Outside through my eyes." />
-<meta name="twitter:title" content="Outside through my eyes." />
-<title>Outside through my eyes.</title>
+<meta name="apple-mobile-web-app-title" content="Access Abel"/>
+<meta name="application-name" content="Access Abel" />
+<meta property="og:title" content="Access Abel" />
+<meta property="og:image:alt" content="Access Abel" />
+<meta name="twitter:title" content="Access Abel" />
+<title>Access Abel</title>
 
   </head>
 
@@ -70,23 +71,31 @@
       <input id="swap-eyes" type="checkbox">
     <div id="swap-bar">
         <span>
-            <p>Viewing the world through my eyes. </p>
             <label for="swap-eyes">Swap eyes</label>
         </span>
     </div>
 
-    <div id="through-my-eyes" class="scene">
+    <section aria-label="What I value" id="through-my-eyes" class="scene">
+      <div aria-label="Put on glasses animation">
         <div id="glasses-overlay"></div>
-        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+        <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
             No SVG support
         </object>
-    </div>
+      </div>
 
-    <div id="through-your-eyes" class="scene">
-        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
-            No SVG support
+      <div aria-label="Background mountain scene">
+        <object type="image/svg+xml" data="/assets/img/svg/mountain_scene.svg">
+          No SVG support
         </object>
-    </div>
+      </div>
+      
+    </section>
+
+    <section aria-label="About me" id="through-your-eyes" class="scene">
+      <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+          No SVG support
+      </object>
+    </section>
     </main>
 
     <footer>

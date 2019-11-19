@@ -1,0 +1,160 @@
+/*********************
+*      Content      *
+*********************/
+
+/*
+*    View selector
+* * * * * * * * * * */
+
+/* Split input and label tag to allow cousin selection [CHECKBOX-COUSIN-SELECTION] */
+#swap-bar  {
+    --size-swap-bar-padding: 0.2em;
+    --color-swap-bar-background: rgb(236, 238, 204);
+  
+    position: fixed;
+    padding: var(--size-swap-bar-padding) 0px;
+    z-index: 1;
+    text-align: center;
+  
+    width: 100%;
+  
+    /* background-color: var(--color-swap-bar-background); */
+  }
+  
+  /*  
+  *  Textual swapping
+  */
+  
+  #swap-bar p {
+    display: inline;
+  }
+  
+  /* Hide textual element without hiding pseudo element [UNHIDE-PSEUDO-CONTENT] */
+  #swap-bar label {
+    visibility: hidden;
+    
+    font-size: 0px;
+  
+    cursor: pointer;
+  }
+  
+  #swap-bar label::before {
+    visibility: visible;
+  
+    content: 'Look through your eyes';
+  
+    font-size: 1rem;
+  
+    font-style: italic;
+  }
+  
+  input#swap-eyes:checked ~ #swap-bar label::before {
+    content: 'Look through my eyes'
+  }
+  
+  /*  
+  *  Functional swapping
+  */
+  
+  input#swap-eyes {
+    display: none;
+  }
+  
+  input#swap-eyes:checked ~ .scene {
+    transform: translate(100%, 0px);
+  }
+  
+  /* Reset the animation when switching views to retrigger it when switching back [RESET-ANIMATION-RETRIGGER] */
+  input#swap-eyes:checked ~ #through-my-eyes .glasses, input#swap-eyes:checked ~ #through-my-eyes #glasses-overlay  {
+    animation: none;
+  }
+  
+  /*
+  *  View definition
+  * * * * * * * * * * */
+  
+  .scene {
+    overflow-x: hidden;
+  
+    position: absolute;
+    top: 0px; left: 0px;
+  
+    width: 100%;
+  
+    transition: transform 0.25s cubic-bezier(0.075, 0.82, 0.165, 1);
+  }
+  
+  /*  
+  *  Look through your eyes
+  */
+  
+  /* Position specification to switch views with a single transform application [CASCADING-TRANSFORM] */
+  #through-your-eyes {
+    left: -100%;
+  }
+  
+  /*  
+  *  Look through my eyes
+  */
+  
+  #through-my-eyes {
+  }
+  
+  #through-my-eyes .content {
+    height: 100vh; width: 100vw;
+  }
+  
+  #through-my-eyes .glasses {
+    pointer-events: none;
+  
+    position: fixed;
+    top: 50%;
+    z-index: 1;
+  
+    animation: var(--duration-put-on) ease var(--duration-put-on-delay) 1 normal both running put-on;
+  }
+  
+  #through-my-eyes #glasses-overlay {
+    pointer-events: none;
+  
+    position: fixed;
+    top: 0px; left: 0px;
+  
+    width: 100%; height: 100vh;
+  
+    background-color: var(--color-glasses-overlay);
+  
+    animation: calc(0.4 * var(--duration-put-on)) ease calc(0.25 * var(--duration-put-on) + var(--duration-put-on-delay)) 1 normal both running fade-in;
+  }
+  
+  @keyframes fade-in {
+    0% {
+        opacity: 0;
+    }
+  
+    100% {
+        opacity: var(--color-glasses-overlay-opacity);
+    }
+  }
+  
+  @keyframes put-on {
+    0% {
+      transform: translate(0px, -20%) scale(1.5);
+  
+      opacity: 0;
+    }
+  
+    50% {
+      opacity: 0.85;
+    }
+  
+    85% {
+      transform: translate(0px, -50%) scale(2.5);   
+    }
+  
+    100% {
+      display: none;
+  
+      opacity: 0;
+    }
+  }

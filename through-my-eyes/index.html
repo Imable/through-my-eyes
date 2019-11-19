@@ -1,29 +1,41 @@
 <sergey-import src="template">
+  <sergey-template name="import">
+    <link rel="stylesheet" href="/assets/css/through-eyes.css"/>
+  </sergey-template>
+
   <sergey-template name="title">
-    Outside through my eyes.
+    Access Abel
   </sergey-template>
 
   <sergey-template name="main">
     <input id="swap-eyes" type="checkbox">
     <div id="swap-bar">
         <span>
-            <p>Viewing the world through my eyes. </p>
             <label for="swap-eyes">Swap eyes</label>
         </span>
     </div>
 
-    <div id="through-my-eyes" class="scene">
+    <section aria-label="What I value" id="through-my-eyes" class="scene">
+      <div aria-label="Put on glasses animation">
         <div id="glasses-overlay"></div>
-        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+        <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
             No SVG support
         </object>
-    </div>
+      </div>
 
-    <div id="through-your-eyes" class="scene">
-        <object id="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
-            No SVG support
+      <div aria-label="Background mountain scene">
+        <object type="image/svg+xml" data="/assets/img/svg/mountain_scene.svg">
+          No SVG support
         </object>
-    </div>
+      </div>
+      
+    </section>
+
+    <section aria-label="About me" id="through-your-eyes" class="scene">
+      <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
+          No SVG support
+      </object>
+    </section>
   </sergey-template>
 
 </sergey-import>
