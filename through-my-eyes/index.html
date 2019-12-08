@@ -11,31 +11,32 @@
     <input id="swap-eyes" type="checkbox">
     <div id="swap-bar">
         <span>
-            <label for="swap-eyes">Swap eyes</label>
+            <label for="swap-eyes">Swap?</label>
         </span>
     </div>
 
-    <section aria-label="What I value" id="through-my-eyes" class="scene">
+    <div aria-label="What I value" id="through-my-eyes" class="scene">
       <div aria-label="Put on glasses animation">
-        <div id="glasses-overlay"></div>
+        <div aria-hidden="true" id="glasses-overlay"></div>
         <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
             No SVG support
         </object>
       </div>
 
-      <div aria-label="Background mountain scene">
-        <object type="image/svg+xml" data="/assets/img/svg/mountain_scene.svg">
+      <section aria-label="Mountain scene" id="mountain-scene">
+        <object id="mountains" type="image/svg+xml" data="/assets/img/svg/mountain_scene.svg">
           No SVG support
         </object>
-      </div>
+      </section>
       
-    </section>
+    </div>
 
-    <section aria-label="About me" id="through-your-eyes" class="scene">
+    <div aria-label="About me" id="through-your-eyes" class="scene">
       <object class="glasses" type="image/svg+xml" data="/assets/img/svg/glasses.svg">
-          No SVG support
+        No SVG support
       </object>
-    </section>
+      <img id="me" src="/assets/img/jpg/me.jpg">
+    </div>
   </sergey-template>
 
 </sergey-import>
